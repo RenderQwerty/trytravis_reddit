@@ -13,7 +13,25 @@ ssh -i ~/.ssh/appuser appuser@127.0.0.1 -p 7878
 ### Доп. задание
 Предложить вариант решения для подключения из консоли при помощи команды вида ssh someinternalhost из локальной консоли рабочего устройства, чтобы подключение выполнялось по алиасу someinternalhost и внести его в README.md в вашем репозитории.
 
-##### Решение 1: использование параметров конфигурации ssh-клиента ( ~/.ssh/config) на рабочем устройстве (предварительно необходимо установить ssh туннель, как описано выше).
+##### Решение 1: (позаимстовано у @loktionovam, как более верное) - использовать опцию ProxyJump
+
+➜  ~ cat ~/.ssh/config
+Host *
+ ForwardAgent yes
+Host bastion
+ HostName 35.204.231.192
+ User appuser
+ IdentityFile ~/.ssh/appuser
+
+Host someinternalhost
+ HostName 10.164.0.3
+ ProxyJump bastion
+ User appuser
+ IdentityFile ~/.ssh/appuser
+
+```
+
+##### Решение 2: использование параметров конфигурации ssh-клиента ( ~/.ssh/config) на рабочем устройстве (предварительно необходимо установить ssh туннель, как описано в решении основного задания).
 
 ```
 ➜  ~ cat ~/.ssh/config 
@@ -28,23 +46,6 @@ Host bastion
 Host someinternalhost
  HostName 127.0.0.1
  Port 7878
- User appuser
- IdentityFile ~/.ssh/appuser
-
-```
-##### Решение 2 (позаимстовано у @loktionovam, как более верное): использовать опцию ProxyJump (позволяет избежать создания туннеля и не будет необходимости следить за мёртвыми ssh сессиями )
-```
-➜  ~ cat ~/.ssh/config
-Host *
- ForwardAgent yes
-Host bastion
- HostName 35.204.231.192
- User appuser
- IdentityFile ~/.ssh/appuser
-
-Host someinternalhost
- HostName 10.164.0.3
- ProxyJump bastion
  User appuser
  IdentityFile ~/.ssh/appuser
 
