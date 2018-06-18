@@ -14,7 +14,7 @@ ssh -i ~/.ssh/appuser appuser@127.0.0.1 -p 7878
 Предложить вариант решения для подключения из консоли при помощи команды вида ssh someinternalhost из локальной консоли рабочего устройства, чтобы подключение выполнялось по алиасу someinternalhost и внести его в README.md в вашем репозитории.
 
 ##### Решение 1: (позаимстовано у @loktionovam, как более верное) - использовать опцию ProxyJump
-
+```
 ➜  ~ cat ~/.ssh/config
 Host *
  ForwardAgent yes
@@ -58,4 +58,3 @@ Host someinternalhost
 
 bastion_IP = 35.204.231.192
 someinternalhost_IP = 10.164.0.3
-
