@@ -34,7 +34,17 @@ gcloud compute instances create reddit-app \
   --metadata startup-script-url=gs://script_storage/startup.sh
 ```
 ### Дополнительное задание 2
-
+- Создать правило firewall через утилиту gcloud: **выполнено**
+```
+gcloud compute firewall-rules create default-puma-server \
+   --action allow \
+   --target-tags puma-server \
+   --source-ranges 0.0.0.0/0 \
+   --rules tcp:9292
+```
+#### IP addresses
+testapp_IP = 35.204.84.195
+testapp_port = 9292
 
 
 # Homework 03
