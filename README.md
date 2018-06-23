@@ -1,3 +1,44 @@
+# Homework 04
+
+### Самостоятельная работа
+- Завернуть команды по настройке системы и деплою в shell скрипты: **выполнено**
+### Дополнительная самостоятельная работа
+- Написал ansible роль, которая выполняет задачу по деплою приложения (см. reddit-app.yml и ansible.cfg)
+
+### Дополнительное задание 1
+Создать startup скрипт для gcloud, который будет запускаться при создании инстанса: **выполнено**
+ - См. startup.sh в корне репозитория
+     - Можно передать этот скрипт как исполняемый при создании vm, для этого необходимо использовать опцию --metadata-from-file
+
+```
+gcloud compute instances create reddit-app \
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure \
+  --metadata-from-file startup-script=./startup.sh  
+```
+
+  - Также вместо передачи скрипта с локальной машины, можно предварительно загрузить его в bucket и указать ссылку не него в опции startup-script-url
+```
+gcloud compute instances create reddit-app \
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --restart-on-failure \
+  --scopes storage-ro \
+  --metadata startup-script-url=gs://script_storage/startup.sh
+```
+### Дополнительное задание 2
+
+
+
+# Homework 03
+
 ### Основное задание
 Исследовать способ подключения к someinternalhost в одну команду из вашего рабочего устройства, проверить работоспособность найденного решения и внести его в README.md в вашем репозитории
 
