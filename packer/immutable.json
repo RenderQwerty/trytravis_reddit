@@ -31,8 +31,13 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "scripts/deploy.sh",
+            "script": "files/deploy.sh",
             "execute_command": "{{.Path}}"
+        },
+        {
+            "type": "shell",
+            "script": "files/systemd.sh",
+            "execute_command": "sudo {{.Path}}"
         }
     ]
 }
