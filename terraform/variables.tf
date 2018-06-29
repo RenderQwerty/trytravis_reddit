@@ -4,6 +4,11 @@ variable "project" {
 
 variable "region" {
   description = "Region"
+  default     = "europe-west1"
+}
+
+variable "zone" {
+  description = "Zone"
   default     = "europe-west1-b"
 }
 
@@ -17,4 +22,9 @@ variable "private_key_path" {
 
 variable "disk_image" {
   description = "Disk image"
+}
+
+variable "instance_count" {
+  description = "Count of app instances for load balancing"
+  default     = "1"
 }
