@@ -13,5 +13,15 @@ variable db_disk_image {
 
 variable "mongo_port" {
   description = "TCP for for mongo database"
+  default     = ["27017"]
+}
+
+variable "ssh_port" {
+  description = "TCP for for mongo database"
   default     = ["22"]
+}
+
+variable "private_key_path" {
+  description = "Path to private ssh key for provisioners"
+  default     = "~/.ssh/appuser"
 }

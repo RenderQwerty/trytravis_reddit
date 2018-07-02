@@ -15,6 +15,17 @@ resource "google_compute_instance" "db" {
     access_config = {}
   }
 
+  connection {
+    type        = "ssh"
+    user        = "appuser"
+    agent       = "false"
+    private_key = "${file(var.private_key_path)}"
+  }
+
+  provisioner "remote-exec" {
+    script = "${path.module}/files/db.sh"
+  }
+
   metadata {
     sshKeys = "appuser:${file(var.public_key_path)}"
   }
@@ -26,7 +37,7 @@ resource "google_compute_firewall" "firewall_mongo" {
 
   allow {
     protocol = "tcp"
-    ports    = ["${var.mongo_port}"]
+    ports    = ["${var.mongo_port}", "${var.ssh_port}"]
   }
 
   target_tags = ["reddit-db"]
