@@ -1,0 +1,56 @@
+---
+- hosts: reddit_app
+  tasks:
+
+# add mongodb repo keys
+   - name: add gpg repo keys
+     become: yes
+     apt_key:
+       keyserver: keyserver.ubuntu.com
+       id: EA312927
+       state: present
+
+# add mongo apt_repository
+   - name: apt repository setup
+     become: yes
+     apt_repository:
+       repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
+       filename: mongodb-org-3.2
+       state: present
+       update_cache: yes
+
+# install packages
+   - name: package installation
+     become: yes
+     package:
+       name:
+         - ruby-full
+         - ruby-bundler
+         - build-essential
+         - mongodb-org
+       state: present
+
+# configure service autostart
+   - name: mongo database service configuration
+     become: yes
+     service:
+       name: mongod
+       enabled: yes
+       state: started
+
+# clone reddit-app
+   - name: clone reddit-app from github
+     git:
+       repo: 'https://github.com/express42/reddit.git'
+       version: monolith
+       dest: /home/appuser/reddit
+
+# install reddit-app
+   - name: install app from bundler
+     bundler:
+       chdir: /home/appuser/reddit
+       state: present
+
+# start puma server
+   - name: start puma as daemon
+     command: chdir=/home/appuser/reddit puma -d
