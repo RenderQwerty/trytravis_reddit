@@ -28,3 +28,18 @@ variable "instance_count" {
   description = "Count of app instances for load balancing"
   default     = "1"
 }
+
+variable app_disk_image {
+  description = "Disk image for reddit app"
+  default     = "reddit-app-base"
+}
+
+variable db_disk_image {
+  description = "Disk image for reddit db"
+  default     = "reddit-db-base"
+}
+
+variable "source_range" {
+  description = "allow access from this ip's"
+  default     = ["85.238.101.64/32"]
+}

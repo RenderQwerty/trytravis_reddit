@@ -7,5 +7,5 @@ resource "google_compute_firewall" "firewall_ssh" {
     ports    = ["${var.ssh_port}"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["${var.source_ranges}"]
 }

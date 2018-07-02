@@ -10,3 +10,8 @@ variable db_disk_image {
   description = "Disk image for reddit db"
   default     = "reddit-db-base"
 }
+
+variable "mongo_port" {
+  description = "TCP for for mongo database"
+  default     = ["22"]
+}
