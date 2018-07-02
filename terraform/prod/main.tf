@@ -4,6 +4,13 @@ provider "google" {
   region  = "${var.region}"
 }
 
+terraform {
+  backend "gcs" {
+    bucket = "otus-tf-backend"
+    prefix = "terraform/tfstate/prod"
+  }
+}
+
 module "app" {
   source          = "../modules/app"
   public_key_path = "${var.public_key_path}"
