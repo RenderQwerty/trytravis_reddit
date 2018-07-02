@@ -1,0 +1,10 @@
+{
+    "project_id": "infra-123456",
+    "source_image_family": "reddit-base",
+    "ssh_username": "username",
+    "image_description": "full image for reddit-app",
+    "disk_size": "12",
+    "disk_type": "pd-ssd",
+    "tags": "puma-server",
+    "network": "default"
+}
