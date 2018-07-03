@@ -25,3 +25,12 @@ variable "private_key_path" {
   description = "Path to private ssh key for provisioners"
   default     = "~/.ssh/appuser"
 }
+
+variable "puma_env" {
+  description = "Path to env file for systemd puma unit"
+  default     = "/tmp/puma.env"
+}
+
+variable "db_address" {
+  description = "Database internal ip"
+}

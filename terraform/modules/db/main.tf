@@ -12,7 +12,6 @@ resource "google_compute_instance" "db" {
 
   network_interface {
     network       = "default"
-    address       = "10.164.0.2"
     access_config = {}
   }
 

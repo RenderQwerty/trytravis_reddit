@@ -31,6 +31,12 @@ resource "google_compute_instance" "app" {
   }
 
   provisioner "remote-exec" {
+    inline = [
+      "sudo echo DATABASE_URL=${var.db_address} > ${var.puma_env}",
+    ]
+  }
+
+  provisioner "remote-exec" {
     script = "${path.module}/files/deploy.sh"
   }
 
