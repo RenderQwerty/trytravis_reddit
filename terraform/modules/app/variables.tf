@@ -34,3 +34,8 @@ variable "puma_env" {
 variable "db_address" {
   description = "Database internal ip"
 }
+
+variable "app_provision_status" {
+  description = "enable or disable provision scripts"
+  default     = "true"
+}

@@ -43,3 +43,8 @@ variable "source_range" {
   description = "allow access from this ip's"
   default     = ["0.0.0.0/0"]
 }
+
+variable "app_provision_status" {
+  description = "enable or disable provision scripts"
+  default     = "false"
+}

@@ -4,6 +4,10 @@ resource "google_compute_instance" "app" {
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
 
+  metadata {
+    sshKeys = "appuser:${file(var.public_key_path)}"
+  }
+
   boot_disk {
     initialize_params {
       image = "${var.app_disk_image}"
@@ -17,6 +21,10 @@ resource "google_compute_instance" "app" {
       nat_ip = "${google_compute_address.app_ip.address}"
     }
   }
+}
+
+resource "null_resource" "app" {
+  count = "${var.app_provision_status ? 1 : 0}"
 
   connection {
     type        = "ssh"
@@ -38,10 +46,6 @@ resource "google_compute_instance" "app" {
 
   provisioner "remote-exec" {
     script = "${path.module}/files/deploy.sh"
-  }
-
-  metadata {
-    sshKeys = "appuser:${file(var.public_key_path)}"
   }
 }
 
