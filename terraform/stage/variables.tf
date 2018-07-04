@@ -46,5 +46,5 @@ variable "source_range" {
 
 variable "app_provision_status" {
   description = "enable or disable provision scripts"
-  default     = "false"
+  default     = "true"
 }
