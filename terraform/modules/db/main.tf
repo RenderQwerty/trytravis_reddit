@@ -22,6 +22,7 @@ resource "google_compute_instance" "db" {
     private_key = "${file(var.private_key_path)}"
   }
 
+  /*
   provisioner "remote-exec" {
     #script = "${path.module}/files/db.sh"
     inline = [
@@ -29,9 +30,10 @@ resource "google_compute_instance" "db" {
       "sudo systemctl restart mongod",
     ]
   }
+*/
 
   metadata {
-    sshKeys = "appuser:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}"
   }
 }
 
