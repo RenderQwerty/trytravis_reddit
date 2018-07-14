@@ -5,7 +5,7 @@ resource "google_compute_instance" "app" {
   tags         = ["reddit-app"]
 
   metadata {
-    sshKeys = "appuser:${file(var.public_key_path)}"
+    ssh-keys = "appuser:${file(var.public_key_path)}"
   }
 
   boot_disk {

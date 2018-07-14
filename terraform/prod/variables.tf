@@ -40,11 +40,15 @@ variable db_disk_image {
 }
 
 variable "source_range" {
+  type        = "list"
   description = "allow access from this ip's"
-  default     = ["85.238.101.64/32"]
 }
 
 variable "app_provision_status" {
   description = "enable or disable provision scripts"
   default     = "false"
+}
+
+variable "ssh_port" {
+  description = "ssh port for mongo db instance"
 }
