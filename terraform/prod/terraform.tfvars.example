@@ -11,3 +11,5 @@ private_key_path = "~/.ssh/appuser"
 disk_image = "reddit-base"
 
 instance_count = "1"
+
+ssh_port = "22"

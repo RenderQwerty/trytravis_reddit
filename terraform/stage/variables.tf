@@ -18,7 +18,6 @@ variable "public_key_path" {
 
 variable "private_key_path" {
   description = "Path to private ssh key for provisioners"
-  default     = "~/.ssh/appuser"
 }
 
 variable "disk_image" {
@@ -48,4 +47,8 @@ variable "source_range" {
 variable "app_provision_status" {
   description = "enable or disable provision scripts"
   default     = "true"
+}
+
+variable "ssh_port" {
+  description = "ssh port for mongo db instance"
 }
