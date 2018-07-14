@@ -23,7 +23,6 @@ variable "source_range" {
 
 variable "private_key_path" {
   description = "Path to private ssh key for provisioners"
-  default     = "~/.ssh/appuser"
 }
 
 variable "puma_env" {
