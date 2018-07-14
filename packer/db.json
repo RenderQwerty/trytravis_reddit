@@ -1,7 +1,7 @@
 {
     "variables": {
-        "project_id": "",
-        "source_image_family": "",
+        "project_id": null,
+        "source_image_family": null,
         "machine_type": "f1-micro",
         "ssh_username": "",
         "image_description": "",
