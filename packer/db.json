@@ -24,7 +24,7 @@
             "machine_type": "{{user `machine_type`}}",
             "disk_size": "{{user `disk_size`}}",
             "disk_type": "{{user `disk_type`}}",
-            "tags": "puma-server",
+            "tags": "{{user `tags`}}",
             "network": "{{user `network`}}"
         }
     ],
