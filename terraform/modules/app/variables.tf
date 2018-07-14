@@ -21,6 +21,7 @@ variable "puma_port" {
 }
 
 variable "source_range" {
+  type        = "list"
   description = "allow access from this addresses"
 }
 
