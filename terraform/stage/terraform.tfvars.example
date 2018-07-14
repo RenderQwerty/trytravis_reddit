@@ -12,6 +12,6 @@ disk_image = "reddit-base"
 
 instance_count = "1"
 
-source_range = "0.0.0.0/0"
+source_range = ["0.0.0.0/0"]
 
 ssh_port = "22"
