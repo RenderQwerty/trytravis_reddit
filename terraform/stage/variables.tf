@@ -40,6 +40,7 @@ variable db_disk_image {
 }
 
 variable "source_range" {
+  type        = "list"
   description = "allow access from this ip's"
   default     = ["0.0.0.0/0"]
 }
