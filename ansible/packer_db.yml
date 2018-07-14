@@ -23,4 +23,4 @@
      apt: name=mongodb-org state=present
 
    - name: enable mongo unit
-     service: name=mongod enable=yes
+     service: name=mongod enabled=yes
