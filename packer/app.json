@@ -17,7 +17,7 @@
             "project_id": "{{user `project_id`}}",
             "image_name": "reddit-app-{{timestamp}}",
             "image_family": "reddit-app-base",
-            "image_description": "{{user `image_description`}}",
+            "image_description": "ubuntu image with installed ruby",
             "source_image_family": "{{user `source_image_family`}}",
             "zone": "europe-west1-b",
             "ssh_username": "{{user `ssh_username`}}",
