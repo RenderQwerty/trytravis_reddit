@@ -2,6 +2,10 @@ variable public_key_path {
   description = "Path to the public key used to connect to instance"
 }
 
+variable private_key_path {
+  description = "Path to the public key used to connect to instance"
+}
+
 variable zone {
   description = "Zone"
 }
@@ -18,10 +22,6 @@ variable "puma_port" {
 
 variable "source_range" {
   description = "allow access from this addresses"
-}
-
-variable "private_key_path" {
-  description = "Path to private ssh key for provisioners"
 }
 
 variable "puma_env" {
