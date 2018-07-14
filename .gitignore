@@ -4,3 +4,6 @@ reddit-app.retry
 *.tfstate.backup
 *.tfvars
 .terraform/
+*gce.ini
+*key.json
+*vault.key
