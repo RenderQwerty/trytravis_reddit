@@ -6,4 +6,5 @@
 ansible/*.retry
 ansible/key.json
 ansible/vault.key
-ansible/gce.*
+ansible/gce.ini
+ansible/gce.py
