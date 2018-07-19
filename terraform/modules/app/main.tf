@@ -64,5 +64,5 @@ resource "google_compute_firewall" "firewall_puma" {
   }
 
   source_ranges = ["${var.source_range}"]
-  target_tags   = ["reddit-app"]
+  target_tags   = ["reddit-app", "http-server"]
 }

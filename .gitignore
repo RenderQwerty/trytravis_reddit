@@ -7,3 +7,4 @@ ansible/*.retry
 ansible/key.json
 ansible/vault.key
 ansible/gce.*
+ansible/roles/jdauphant.nginx
