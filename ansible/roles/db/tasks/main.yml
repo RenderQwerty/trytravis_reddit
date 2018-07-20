@@ -1,4 +1,8 @@
 ---
+#- name: Display hostvars
+#  debug: var=hostvars
+#  tags: hostvars
+
 - name: Change mongo config file
   template:
     src: mongod.conf.j2

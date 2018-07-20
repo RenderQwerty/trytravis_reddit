@@ -6,5 +6,6 @@
 ansible/*.retry
 ansible/key.json
 ansible/vault.key
-ansible/gce.*
 ansible/roles/jdauphant.nginx
+ansible/environments/*/key.json
+ansible/environments/*/gce.ini
