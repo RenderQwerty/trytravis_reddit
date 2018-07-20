@@ -8,4 +8,3 @@ ansible/key.json
 ansible/vault.key
 ansible/roles/jdauphant.nginx
 ansible/environments/*/key.json
-ansible/environments/*/gce.ini
