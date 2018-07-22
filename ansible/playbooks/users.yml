@@ -1,6 +1,6 @@
 ---
 - name: Create users
-  hosts: all
+  hosts: all !bastion
   become: true
 
   vars_files:
