@@ -6,7 +6,7 @@ before_install:
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/install-dependencies.sh | sudo bash
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_packer.sh | bash
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_terraform.sh | bash
-  - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_ansible.sh | bash
+  - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_ansible.sh | bashtr
 brances:
   only:
     - ansible-3
