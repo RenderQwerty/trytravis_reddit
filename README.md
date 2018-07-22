@@ -1,4 +1,4 @@
-# Infrastructure for express42 devops course
+# Infrastructure for @express42 devops course
 [![Build Status](https://travis-ci.com/Otus-DevOps-2018-05/RenderQwerty_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-05/RenderQwerty_infra)
  
  # Homework 10 - ansible-3
