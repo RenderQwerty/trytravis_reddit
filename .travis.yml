@@ -12,7 +12,3 @@ script:
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_packer.sh | bash
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_terraform.sh | bash
   - curl https://raw.githubusercontent.com/RenderQwerty/express_devops-homeworks/master/validate_ansible.sh | bash
-
-branches:
-  only:
-    - ansible-3
