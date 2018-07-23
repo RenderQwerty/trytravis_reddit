@@ -8,5 +8,10 @@ ansible/key.json
 ansible/vault.key
 ansible/roles/jdauphant.nginx
 ansible/environments/*/key.json
+# Vagrant & molecule
 .vagrant/
-Vagrantfile
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
