@@ -1,14 +1,8 @@
 ---
-- name: install ruby dependencies
-  hosts: all
-  become: true
-  tasks:
-   - name: install ruby deps
-     apt:
-       name: "{{ item }}"
-       state: present
-     loop:
-       - ruby-full
-       - ruby-bundler
-       - build-essential
-      tags: ruby
+- name: Install ruby and rubygems and required packages
+  apt: "name={{ item }} state=present"
+  loop:
+    - ruby-full
+    - ruby-bundler
+    - build-essential
+  tags: ruby
