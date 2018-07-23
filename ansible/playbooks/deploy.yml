@@ -1,6 +1,6 @@
 ---
 - name: Deploy apps
-  hosts: tag_reddit-app
+  hosts: app
   tags: deploy-tag
   tasks:
     - name: Clone reddit-app from github
