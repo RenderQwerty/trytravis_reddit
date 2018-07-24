@@ -1,7 +1,7 @@
 Ansible Role: Mongo db
 =========
 
-Installs mongo db, on Ubuntu Trusty server.
+Installs mongo database on Ubuntu Trusty server.
 
 Requirements
 ------------
