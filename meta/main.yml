@@ -4,11 +4,11 @@ galaxy_info:
   author: renderqwerty
   description: mongo database for Ubuntu Trusty
   company: PPL33-35
-  license: license (MIT)
-  min_ansible_version: 1.2
+  license: "license (MIT)"
+  min_ansible_version: 2.4
   platforms:
     - name: Ubuntu
       versions:
-        - trusty
+        - xenial
   galaxy_tags:
     - mongo
