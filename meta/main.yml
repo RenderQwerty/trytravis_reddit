@@ -1,0 +1,14 @@
+---
+dependencies: []
+galaxy_info:
+  author: renderqwerty
+  description: mongo database for Ubuntu Trusty
+  company: PPL33-35
+  license: license (BSD, MIT)
+  min_ansible_version: 1.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - mongo

@@ -1,1 +1,33 @@
-# ansible-role-mongo
+Ansible Role: Mongo db
+=========
+
+Installs mongo db, on Ubuntu Trusty server.
+
+Requirements
+------------
+
+None.
+
+Role Variables
+--------------
+
+To do.
+
+Dependencies
+------------
+
+None.
+
+Example Playbook
+----------------
+
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
+
+License
+-------
+
+BSD
