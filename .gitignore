@@ -7,6 +7,8 @@ ansible/*.retry
 ansible/key.json
 ansible/vault.key
 ansible/roles/jdauphant.nginx
+ansible/roles/renderqwerty.ansible_role_mongo
+ansible/roles/
 ansible/environments/*/key.json
 # Vagrant & molecule
 .vagrant/
