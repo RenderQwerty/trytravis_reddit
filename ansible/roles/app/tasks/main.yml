@@ -4,4 +4,6 @@
     msg: "This host is in {{ env }} environment!!!"
 
 - include_tasks: ruby.yml
+  tags: ruby
+
 - include_tasks: puma.yml
