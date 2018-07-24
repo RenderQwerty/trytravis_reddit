@@ -1,5 +1,5 @@
 ---
-#- name: Display hostvars
+# - name: Display hostvars
 #  debug: var=hostvars
 #  tags: hostvars
 
@@ -9,5 +9,3 @@
     dest: /etc/mongod.conf
     mode: 0644
   notify: restart mongod
-
-
