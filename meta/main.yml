@@ -2,7 +2,7 @@
 dependencies: []
 galaxy_info:
   author: renderqwerty
-  description: mongo database for Ubuntu Trusty
+  description: mongo database for Ubuntu Xenial
   company: PPL33-35
   license: MIT
   min_ansible_version: 2.4
