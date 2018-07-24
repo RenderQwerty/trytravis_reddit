@@ -16,3 +16,4 @@ ansible/environments/*/key.json
 .cache
 .pytest_cache
 venv/
+ansible/playbooks/packer_db.retry
