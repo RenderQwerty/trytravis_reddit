@@ -11,7 +11,8 @@ None.
 Role Variables
 --------------
 
-To do.
+mongo_port - TCP port on which mongo instance will listen for connections.
+mongo_bind_ip - IP address of interface on which mongo instance will listen for
 
 Dependencies
 ------------
@@ -20,14 +21,19 @@ None.
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
+---
+- name: Configure MongoDB
+  hosts: tag_reddit-db
+  become: true
+  roles:
+    - renderqwerty.ansible_role_mongo
+  vars:
+    - mongo_port: 27017
+    - mongo_bind_ip: 0.0.0.0
+```
 
 License
 -------
 
-BSD
+MIT
