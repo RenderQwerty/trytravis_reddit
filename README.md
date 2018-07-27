@@ -1,6 +1,10 @@
 # Infrastructure for @express42 devops course
 [![Build Status](https://travis-ci.com/Otus-DevOps-2018-05/RenderQwerty_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-05/RenderQwerty_infra)
 
+ # Homework 12 - docker-1
+ - Установлен docker и протестирован его успешный запуск
+ - Разобраны методы управления состоянием и статусом контейнеров.
+
  # Homework 11 - ansible-4
 - Настроены vagrant для локального поднятия тестовой среды и molecule для тестирования.
  ### Задание со *
