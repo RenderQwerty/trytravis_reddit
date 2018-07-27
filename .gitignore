@@ -12,7 +12,7 @@ ansible/roles/renderqwerty.ansible_role_mongo/
 ansible/environments/*/key.json
 # Vagrant & molecule
 .vagrant/
-*.log
+ansible/*.log
 *.pyc
 .molecule
 .cache
