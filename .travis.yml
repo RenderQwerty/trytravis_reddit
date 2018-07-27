@@ -1,0 +1,19 @@
+---
+
+language: python
+python:
+  - '2.7'
+env:
+  global:
+    - secure: "GAdMCEIPY478DGRSx/6NE3c2UChYHGrEMvIIGpMgX0LDS+xJwRKb+27VwN1kUuAzmvoFOSTGSZUYhQfz49mvVG4YCfGCMqochFgwwywZ7LAIc6BwA/HE+soL3gTG5s5y4xfMZZkPBaZRZnuc/l2lM6D8pgjX4ba+vL6869X1qlt5Dj8iwU06HaBq2PhKSbd3QaFNfYFqv0BZp/F8Zr84o7bOLZzbACVmJ23GCVlJ4YmyzDhJK/oG+ckohxg+LxKisbJOwTIE/vzSli7ORCg+IacsXGhTz/9IV+Af7GxhKo/dn5XuxAq8CUIOwGnLigo5429BALSlh2ZVGrJrJU3EReBc5tgocQDx2UwywqwoCZOJ3wj1PvzAymzDZwzNdT2snj8c0VHsiYmdFkX6koqnCBDWzXMODY9FsWAM2V0HcmbZHt1qx5K/pMsTeoZgBxGnqNKW2U5nto5ND/0Xa8+GHcixuJYazkgCAdqnWUGrNHP55alcRGS/jlclRLOOMrvL6rdtiCN/wjM5wC5Zq/GNC54xmfLH9nMiYHOY/DURtMs7bhLzfKIZsHRnDu7m9yDgY8chPYVKnR9YnzN2FmFh+Th1QoYrA4ucwLaTudeDVU7/bNJXueqDGEnYK/J7sC7dSWnxxK0xfygAq5NO+YYIcsK8U5BBze2yLrdTV8oq5bg="
+    - secure: "dM5yWV8xaxC3KjB0KM/hee4yo9skv+0dDbJizpZhSGJ4KQH+WYX5044UyY9+uFInYky2tSF0mky1Yi3AFFbDDd5oQ+DfEzN0mS4kSToVKVR9PTL5jFV5yYlRV3LsSKHcM9iWwiDxdqQ6uHhxCFX3zwlt4+V0CNc6Ct/dgN8TiOAQnRz2zTXgLdhQ5kmXmtrhoN9X1gJLF4aU29qr7eqnO9argkhRV4YXd+N4v9D+etfM1/qSxExnNTy+8hYOx6HcCrBq+IOLdVVmTsuIWAqsA8NVmWiB9Z9gtcO8EfNGSXkjPBVodJoGs9rnxzdjyGRditxzvxDCAPw4OH634rR7Fk7lbobczVDd6771aMe/7dx89lKRlYX7klit6zG7n7NJ2lGMy5uV8bez7UBJdBcxIre/ux1V6m2wKIvjf0KVL8RRNoVnhbsrjr7EOG0bae5B/QaNGgHIqGUt6ca4sv91fyUrqKp93Yi98sDLLofdo+4yiWeBwjPOK0xzlyCUIWQbW5dMEVaIAqkcEkd7s5Gvv88v+4Fi82+egRkJMNK6djb/qniRyC9TCVc7Qk9MCOLaFJDd/shtPTxsmroyVeG+jcrXNWyS1rkTaG4v9x7uwpxiljugyaSyCzGdJ3ZG4GJgoZUX8OlzlTu/f+wvVem6R/zRWzqPXeBQVUGUMGFcJiY="
+    - secure: "SGyehneCezJihE+tJgRDYzRcqjuXeCWqI5sBCsDh56NkRESKdY+ZO+D5NIhBeRfR8kMn+rR6ItEVyT6sZ+oGw9WpX2gBN+YmuJ8gQi08wWM4VGg4DyrxImCnrfEpwCO6tjXBPFnCAtVdnCL0TrN5xDdU3Z2RDRH/j+oTT31RcHmBfb0wod0DDFDvDeo52bqe3TyzYxkEprU4IxEbXzCGBw5FGMbdxk1k/4YIM5jrAa7aaI69Sd4wbWWDnf7Uc2XjRKIYdY/kp+I1dIlF8a89MuOXnZ9AcV6FvojprtxifBvC/KiBC3oS6zPNfZCcWC8sJoJ9LXbTTf2Fh0/a/lwo0vIEM/0uVIdNEnoZRB0+pzOs6WWVXmsX2/8gN2Ci9CZALGLDOJqWi2AuJP+9B2mm6U3UxsHpzcfVfl4S37HLODfsmescAufhNxKznAqS7uokr0qZXdyAxvzqU8EkpThhoCYyDGux8JHEXpBVapsvbKIVdEFFS1xQM8lN3+WJreBgaF5OIUGMqj38p1fbXVuQJP+9B3LkQVZCukhJi1dCm1Gq5VZOn0RCA3IAGuybm6gOq9qHniDEapO+MjSUphJBQE+rFUjh/AJo+95EOgPrtRu6sOab40Ty2Q8cZv9aujK9aVK4RLYxntbnAOGCl6HM+m5vAlqHaO1usVQPxC3fWI0="
+before_install:
+  - openssl aes-256-cbc -K $encrypted_e05dfca2ad0f_key -iv $encrypted_e05dfca2ad0f_iv -in gce_creds.tar.enc -out gce_creds.tar -d
+  - tar xvf gce_creds.tar
+  - mv travis_gce /home/travis/.ssh/
+  - chmod 0600 /home/travis/.ssh/travis_gce
+install:
+  - pip install ansible==2.6.1 molecule>=2.16 testinfra==1.14.0 pycrypto apache-libcloud
+script:
+  - molecule test
