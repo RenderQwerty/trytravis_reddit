@@ -10,7 +10,9 @@ services:
               - comment_db
 
   ui:
-    build: ./ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile.1
     image: "${USERNAME}/ui:${ui_version:-2.0}"
     ports:
       - "${ui_exposed_web:-9292}:9292/tcp"
@@ -36,8 +38,8 @@ networks:
   front_net:
     ipam:
       config:
-        - subnet: 10.0.3.0/24
+        - subnet: 10.0.1.0/24
   back_net:
     ipam:
       config:
-        - subnet: 10.0.4.0/24
+        - subnet: 10.0.2.0/24
