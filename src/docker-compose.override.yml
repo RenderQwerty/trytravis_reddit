@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  ui:
+    entrypoint:
+      - puma
+      - --debug
+      - -w 2
+  comment:
+    entrypoint:
+      - puma
+      - --debug
+      - -w 2
