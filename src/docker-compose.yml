@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  post_db:
+    image: "mongo:${mongodb_version:-latest}"
+    volumes:
+      - post_db:/data/db
+    networks:
+      back_net:
+          aliases:
+              - comment_db
+
+  ui:
+    build: ./ui
+    image: "${USERNAME}/ui:${ui_version:-2.0}"
+    ports:
+      - "${ui_exposed_web:-9292}:9292/tcp"
+    networks:
+      - front_net
+  post:
+    build: ./post-py
+    image: "${USERNAME}/post:${post_version:-1.0}"
+    networks:
+      - back_net
+      - front_net
+  comment:
+    build: ./comment
+    image: "${USERNAME}/comment:${comment_version:-1.0}"
+    networks:
+      - front_net
+      - back_net
+
+volumes:
+  post_db:
+
+networks:
+  front_net:
+    ipam:
+      config:
+        - subnet: 10.0.3.0/24
+  back_net:
+    ipam:
+      config:
+        - subnet: 10.0.4.0/24
