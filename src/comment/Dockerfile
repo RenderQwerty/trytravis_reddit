@@ -11,4 +11,5 @@ RUN apt-get update -qq && apt-get install -y build-essential=11.7 --no-install-r
 RUN bundle install
 
 WORKDIR $APP_HOME
+COPY . $APP_HOME
 CMD ["puma"]

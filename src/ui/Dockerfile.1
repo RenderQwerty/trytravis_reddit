@@ -18,5 +18,5 @@ RUN apk add --update --no-cache \
     && gem install bundler --no-ri --no-rdoc
 COPY Gemfile* $APP_HOME/
 RUN bundle install
-
+COPY . $APP_HOME
 CMD ["puma"]
