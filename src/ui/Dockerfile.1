@@ -16,8 +16,7 @@ RUN apk add --update --no-cache \
     ruby-json=2.3.7-r0 \
     ruby-rake=2.3.7-r0 \
     && gem install bundler --no-ri --no-rdoc
-
 COPY Gemfile* $APP_HOME/
 RUN bundle install
-COPY . $APP_HOME
+
 CMD ["puma"]
