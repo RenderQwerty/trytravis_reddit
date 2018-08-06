@@ -11,6 +11,8 @@ services:
     volumes:
       - ./post-py:/app
   comment:
+    volumes:
+      - ./comment:/app
     entrypoint:
       - puma
       - --debug
