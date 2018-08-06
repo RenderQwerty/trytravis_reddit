@@ -13,20 +13,20 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile.1
-    image: "${USERNAME}/ui:${ui_version:-2.0}"
+    image: "${USERNAME}/ui:${ui_version:-2.2}"
     ports:
       - "${ui_exposed_web:-9292}:9292/tcp"
     networks:
       - front_net
   post:
     build: ./post-py
-    image: "${USERNAME}/post:${post_version:-1.0}"
+    image: "${USERNAME}/post:${post_version:-2.2}"
     networks:
       - back_net
       - front_net
   comment:
     build: ./comment
-    image: "${USERNAME}/comment:${comment_version:-1.0}"
+    image: "${USERNAME}/comment:${comment_version:-2.2}"
     networks:
       - front_net
       - back_net
