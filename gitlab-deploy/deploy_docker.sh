@@ -15,3 +15,5 @@ gcloud beta compute \
     --boot-disk-size=100GB \
     --boot-disk-type=pd-standard \
     --boot-disk-device-name=gitlab-1
+
+gcloud compute instances list
