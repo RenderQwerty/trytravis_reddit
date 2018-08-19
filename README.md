@@ -1,7 +1,9 @@
  # Homework 16 - gitlab-ci-1
  - Для упрощения возможных будущих задач по деплою хостов опишем поднятия инстансов с докером в виде кода:
-   - В каталоге gitlab-deploy/packer два шаблона пакера для деплоя инстансов. В `packer/docker-host.json` и `ansible/docker-host.yml` описываем создание gcloud инстанса и провижининга docker в него.
-   - ansible ролью опишем провижин omnibus инсталляции gitlab.
+   - В каталоге gitlab-deploy/packer два шаблона пакера для деплоя инстансов. В `gitlab-deploy/packer/docker-host.json` и `gitlab-deploy/ansible/docker-host.yml` описываем создание gcloud инстанса и провижининга docker в него.
+   - Поднимем через скрипт `gitlab-deploy/deploy_docker.sh` новый инстанс с предустановленным docker. 
+   - Опишем провижин omnibus инсталляции gitlab в виде [роли](https://github.com/RenderQwerty/ansible-galaxy-gitlab) и запустим через плейбук `gitlab-deploy/ansible/gitlab-host.yml`
+   - Также описываем провижин gitlab-runner'a - `ansible/playbooks/gitlab-runner.yml`
  # Homework 15 - docker-4
  - Задание 1: указал в .env файле композа используемые версии образов и проброшенный порт веб-сервиса. Также задал стандартные значения переменных, которые будут использоваться в том случае, если отсутсвует .env файл. 
  - Имя контейнера в docker-compose по умолчанию генерируется из имени каталога, в котором размещён docker-compose.yml, имени сервиса и постфикса с кол-вом инстансов одного сервиса. Изменить префикс имени можно, задав значение переменной `COMPOSE_PROJECT_NAME` или через флаг `-p`. Имя контейнера можно переопределить через параметр `container_name: someName`. Но в таком случае, контейнер будет именоваться без префикса COMPOSE_PROJECT_NAME. Это может добавить смуты и посеять панику в том случае, если на сервере запущено множетсво контейнеров из разных compose проектов. Чтобы этого избежать и не потерять привязки к COMPOSE_PROJECT_NAME в том случае, если всё-таки по каким-то неизвестным необходимо указать кастомное имя контейнера вместо имени сервиса, то можно в docker-compose.yml сгенерировать `containter_name` из переменной COMPOSE_PROJECT_NAME + myCustomName: `container_name: "${COMPOSE_PROJECT_NAME}_myCustomName"`.

@@ -1,0 +1,14 @@
+---
+- name: Configure gitlab runner
+  hosts: tag_gitlab
+  become: true
+  tasks:
+
+    - name: spinup gitlab-runner
+      docker_container:
+        name: gitlab-runner
+        image: gitlab/gitlab-runner:latest
+        restart_policy: always
+        volumes:
+          - '/srv/gitlab-runner/config:/etc/gitlab-runner'
+          - '/var/run/docker.sock:/var/run/docker.sock'
