@@ -13,7 +13,7 @@ docker-monolith/docker/*
 .env
 
 # gitlab
-gitlab-deploy/ansible/roles/
+gitlab-ci/ansible/roles/
 archive/
 variables.json
 gce.ini
