@@ -3,4 +3,4 @@
   hosts: tag_gitlab
   become: true
   roles:
-    - renderqwerty.ansible-galaxy-gitlab
+    - renderqwerty.ansible_galaxy_gitlab
