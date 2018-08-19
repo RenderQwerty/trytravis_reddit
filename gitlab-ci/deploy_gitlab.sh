@@ -10,7 +10,7 @@ gcloud beta compute \
     --service-account=1086246771173-compute@developer.gserviceaccount.com \
     --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
     --tags=gitlab,http-server,https-server \
-    --image=docker-host-1534662058 \
+    --image-family=docker-host \
     --image-project=docker-211515 \
     --boot-disk-size=100GB \
     --boot-disk-type=pd-standard \

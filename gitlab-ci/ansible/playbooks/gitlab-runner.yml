@@ -1,14 +1,72 @@
 ---
 - name: Configure gitlab runner
-  hosts: tag_gitlab
+  hosts: tag_gitlab-runner
   become: true
+  vars_prompt:
+    - name: "runner_token"
+      prompt: "Enter Gitlab token for runner registration"
+      private: no
+
+  roles:
+    - andrewrothstein.docker-machine
   tasks:
 
-    - name: spinup gitlab-runner
+    - name: Get installation script
+      get_url:
+        url: https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh
+        dest: /tmp/script.deb.sh
+        mode: 0755
+
+    - name: Execute installation script
+      shell: /tmp/script.deb.sh
+      tags: never
+
+    - name: install runner
+      apt:
+        name: gitlab-ci-multi-runner
+
+    - name: Spinup cache server
       docker_container:
-        name: gitlab-runner
-        image: gitlab/gitlab-runner:latest
+        name: minio
+        image: minio/minio:latest
         restart_policy: always
+        published_ports:
+          - '9000:9000'
         volumes:
-          - '/srv/gitlab-runner/config:/etc/gitlab-runner'
-          - '/var/run/docker.sock:/var/run/docker.sock'
+          - '/srv/minio/config:/root/.minio'
+          - '/srv/minio/files:/export'
+        command: server /export
+
+    - name: show Access Key
+      shell: docker logs minio | grep AccessKey | cut -d' ' -f2
+      register: access_key
+    - debug: msg="Access Key -  {{ access_key.stdout_lines }}"
+
+    - name: show Secret Key
+      shell: docker logs minio | grep SecretKey | cut -d' ' -f2
+      register: secret_key
+    - debug: msg="Secret Key -  {{ secret_key.stdout_lines }}"
+
+    - name: register autoscale runner
+      shell: gitlab-runner register --non-interactive --url "http://10.164.0.2/" --registration-token "{{ runner_token }}" --executor "docker+machine" --docker-image alpine:latest --description "multi-runner" --run-untagged
+      tags: never
+
+    - name: tune config.toml
+      lineinfile:
+        path: /etc/gitlab-runner/config.toml
+        regexp: '^concurrent ='
+        line: 'concurrent = 4'
+    - name: more tune
+      blockinfile:
+        backup: yes
+        path: /etc/gitlab-runner/config.toml
+        insertafter: "^  [runners.cache]"
+        block: |
+           Type = "s3"
+           ServerAddress = "http://10.164.0.2:9000"
+           AccessKey = "{{ access_key }}"
+           SecretKey = "{{ secret_key }}"
+           BucketName = "cache"
+           Insecure = true
+           Shared = true
+
