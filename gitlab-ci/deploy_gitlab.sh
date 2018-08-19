@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gcloud beta compute \
-    --project=docker-123456 instances create gitlab-1 \
+    --project=docker-211515 instances create gitlab-1 \
     --zone=europe-west4-a \
     --machine-type=n1-standard-1 \
     --subnet=default \
