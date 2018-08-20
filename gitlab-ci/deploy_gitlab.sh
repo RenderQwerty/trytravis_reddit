@@ -1,10 +1,16 @@
 #!/bin/bash
 
+gcloud compute addresses create gitlab_address \
+    --region europe-west4-a \
+    --subnet gitlab \
+    --addresses 10.164.0.2
+
 gcloud beta compute \
     --project=docker-211515 instances create gitlab-1 \
     --zone=europe-west4-a \
     --machine-type=n1-standard-1 \
-    --subnet=default \
+    --private-network-ip gitlab_address \
+    --subnet=gitlab \
     --network-tier=PREMIUM \
     --maintenance-policy=MIGRATE \
     --service-account=1086246771173-compute@developer.gserviceaccount.com \

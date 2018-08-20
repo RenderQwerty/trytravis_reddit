@@ -18,13 +18,13 @@
             "image_name": "gitlab-runner-{{timestamp}}",
             "image_family": "gitlab-runner",
             "image_description": "Gitlab runner",
-            "source_image_family": "docker-host",
+            "source_image_family": "{{user `source_image_family`}}",
             "zone": "europe-west4-a",
             "ssh_username": "{{user `ssh_username`}}",
             "machine_type": "{{user `machine_type`}}",
-            "disk_size": "100",
+            "disk_size": "30",
             "disk_type": "{{user `disk_type`}}",
-            "tags": "gitlab-runner",
+            "tags": "{{user `tags`}}",
             "network": "{{user `network`}}"
         }
     ],

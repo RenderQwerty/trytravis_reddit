@@ -6,7 +6,15 @@
    - Также описываем провижин gitlab-runner'a - `gitlab-ci/ansible/playbooks/gitlab-runner.yml`
  ### Задание со *
 Продумайте автоматизацию развертывания и регистрации Gitlab CI Runner.
-  - 
+  - Тут можно пойти несколькими вариантами:
+      1. Выкатка нового инстанса с раннером через terraform.
+      2. Использовать автоскейлинг через раннер с docker+machine executor'ом, который будет спавнить новые раннеры.
+      3. Использовать instance groups с автоскейлингом по ресурсам. На этапе старта нового инстанса скриптом дергать команду регистрации раннера.
+
+    Дабы секономить время, пойду по первому варианту:
+      - Создаём через packer+ansible образ с предустановленным gitlab-runner - `packer build -var-file=packer/variables.json packer/gitlab-runner.json`
+      - 
+
 Настройте интеграцию вашего Pipeline с тестовым Slack-чатом, который вы использовали ранее
   - [Ссылка](https://devops-team-otus.slack.com/messages/CB46XSULT) на slack канал с нотификациями от gitlab
  # Homework 15 - docker-4
