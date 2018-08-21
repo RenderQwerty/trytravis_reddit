@@ -1,3 +1,0 @@
----
-- import_playbook: gitlab-host.yml
-- import_playbook: gitlab-runner.yml

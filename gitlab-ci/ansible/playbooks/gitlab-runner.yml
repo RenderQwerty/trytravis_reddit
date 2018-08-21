@@ -1,6 +1,0 @@
----
-- name: Configure gitlab runner
-  hosts: all
-  become: true
-  roles:
-    - renderqwerty.ansible_galaxy_gitlab_runner
