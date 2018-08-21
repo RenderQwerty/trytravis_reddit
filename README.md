@@ -1,19 +1,18 @@
  # Homework 16 - gitlab-ci-1
  - Для упрощения возможных будущих задач по деплою хостов опишем поднятия инстансов с предустановленным docker & docker-compose в виде кода:
-   - В каталоге gitlab-deploy/packer два шаблона пакера для деплоя инстансов. В `gitlab-ci/packer/docker-host.json` и `gitlab-ci/ansible/docker-host.yml` описываем создание gcloud инстанса и провижининга docker в него.
-   - Поднимем через скрипт `gitlab-ci/deploy_docker.sh` новый инстанс с предустановленным docker. 
+   - В каталоге gitlab-deploy/packer два шаблона пакера для деплоя инстансов. В `gitlab-ci/packer/docker-host.json` и `gitlab-ci/ansible/playbooks/docker-host.yml` описываем создание gcloud инстанса и провижининга docker в него.
+   - Поднимем через скрипт `gitlab-ci/deploy_docker.sh` новый инстанс с предустановленным docker (создаём для этого отдельную внутренюю сеть и назначаем инстансу статический ip, это понадобится для доп. дз). 
  - Опишем провижин omnibus инсталляции gitlab в виде [роли](https://github.com/RenderQwerty/ansible-galaxy-gitlab) и запустим через плейбук `gitlab-deploy/ansible/gitlab-host.yml`
-   - Также описываем провижин gitlab-runner'a - `gitlab-ci/ansible/playbooks/gitlab-runner.yml`
+
  ### Задание со *
 Продумайте автоматизацию развертывания и регистрации Gitlab CI Runner.
   - Тут можно пойти несколькими вариантами:
-      1. Выкатка нового инстанса с раннером через terraform.
+      1. Частично ручная выкатака нового инстанса с раннером через любую утилиту ( gcloud, terraform, etc... ).
       2. Использовать автоскейлинг через раннер с docker+machine executor'ом, который будет спавнить новые раннеры.
       3. Использовать instance groups с автоскейлингом по ресурсам. На этапе старта нового инстанса скриптом дергать команду регистрации раннера.
 
     Дабы секономить время, пойду по первому варианту:
-      - Создаём через packer+ansible образ с предустановленным gitlab-runner - `packer build -var-file=packer/variables.json packer/gitlab-runner.json`
-      - 
+      - Снова используем ранее подготовленный образ с предустановленным docker'ом и ансиблом как базовый и создаём инстанс, которому в качестве стартап скрипта передаём команду загрузки ansible плейбука с инструкциями по развёртыванию gitlab раннера - `gitlab-ci/deploy_runner.sh`. Сам плейбук тоже разместим в отдельном config репозитории на этом gitlab сервере. Через этот-же startup скрипт локально (по отношению к свежесозданному инстансу) выполняется ansible плейбук и стартует docker контейнер с раннером, который регистрируется на gitlab сервере.
 
 Настройте интеграцию вашего Pipeline с тестовым Slack-чатом, который вы использовали ранее
   - [Ссылка](https://devops-team-otus.slack.com/messages/CB46XSULT) на slack канал с нотификациями от gitlab

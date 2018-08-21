@@ -1,4 +1,4 @@
-ansible>=2.6.
+ansible>=2.6.3
 ansible-lint>=3.4.23
 molecule>=2.16
 testinfra==1.14.0
