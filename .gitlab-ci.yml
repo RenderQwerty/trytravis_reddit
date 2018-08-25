@@ -44,10 +44,24 @@ branch_review:
   environment:
     name: branch/$CI_COMMIT_REF_NAME
     url:  http://$CI_ENVIRONMENT_SLUG.express42.com
+    on_stop: stop_review
   only:
     - branches
   except:
     - master
+
+stop_review:
+  stage: review
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - echo "remove review"
+  when: manual
+  environment:
+    name: branch/$CI_COMMIT_REF_NAME
+    action: stop
+
+
 
 staging:
   stage: stage
