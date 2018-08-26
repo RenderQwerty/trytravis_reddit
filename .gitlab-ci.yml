@@ -9,14 +9,12 @@ stages:
 variables:
   DATABASE_URL: 'mongodb://mongo/user_posts'
 
-before_script:
-  - cd reddit
-  - bundle install
-
 build_job:
   stage: build
+  before_script:
+    - cd reddit
   script:
-    - echo 'Building'
+    - bundle install
 
 test_unit_job:
   stage: test
@@ -36,14 +34,14 @@ deploy_dev_job:
     - echo 'Deploy'
   environment:
     name: dev
-    url: http://dev.express42.com
+    url: http://dev.express42.ppl33-35.com
 
 branch_review:
   stage: review
   script: echo "Deploy to $CI_ENVIRONMENT_SLUG"
   environment:
     name: branch/$CI_COMMIT_REF_NAME
-    url:  http://$CI_ENVIRONMENT_SLUG.express42.com
+    url:  http://$CI_ENVIRONMENT_SLUG.express42.ppl33-35.com
     on_stop: stop_review
   only:
     - branches
@@ -70,7 +68,7 @@ staging:
     - echo 'Deploy'
   environment:
     name: stage
-    url: http://beta.express42.com
+    url: http://beta.express42.ppl33-35.com
 
 production:
   stage: production
@@ -81,4 +79,4 @@ production:
     - echo 'Deploy'
   environment:
     name: production
-    url: https://express42.com
+    url: https://prod.express42.ppl33-35.com
