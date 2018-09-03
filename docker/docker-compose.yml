@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+
   post_db:
     image: "mongo:${mongodb_version:-latest}"
     volumes:
@@ -9,23 +10,34 @@ services:
           aliases:
               - comment_db
 
+  prometheus:
+    image: ${USERNAME}/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+    networks:
+        - front_net
+
+
   ui:
-    build:
-      context: ./ui
-      dockerfile: Dockerfile.1
     image: "${USERNAME}/ui:${ui_version:-2.2}"
     ports:
       - "${ui_exposed_web:-9292}:9292/tcp"
     networks:
       - front_net
+
   post:
-    build: ./post-py
     image: "${USERNAME}/post:${post_version:-2.2}"
     networks:
       - back_net
       - front_net
+
   comment:
-    build: ./comment
     image: "${USERNAME}/comment:${comment_version:-2.2}"
     networks:
       - front_net
@@ -33,6 +45,7 @@ services:
 
 volumes:
   post_db:
+  prometheus_data:
 
 networks:
   front_net:
