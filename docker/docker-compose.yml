@@ -22,6 +22,21 @@ services:
       - '--storage.tsdb.retention=1d'
     networks:
         - front_net
+        - metrics_net
+
+  node-exporter:
+    image: prom/node-exporter:v0.15.2
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+      - metrics_net
 
 
   ui:
@@ -56,3 +71,4 @@ networks:
     ipam:
       config:
         - subnet: 10.0.2.0/24
+  metrics_net:
