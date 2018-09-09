@@ -38,6 +38,24 @@ services:
     networks:
       - metrics_net
 
+  mongo_exporter:
+    image: ${USERNAME}/docker-mongodb-exporter
+    environment:
+      - MONGODB_URL=mongodb://post_db:27017
+    networks:
+      - back_net
+      - metrics_net
+
+  cloudprober:
+    image: ${USERNAME}/cloudprober
+    volumes:
+      - /home/jaels/git-projects/RenderQwerty_microservices/docker/cloudprober.cfg:/etc/cloudprober.cfg
+    ports:
+      - '9313:9313'
+    networks:
+      - metrics_net
+      - front_net
+      - back_net
 
   ui:
     image: "${USERNAME}/ui:${ui_version:-2.2}"
