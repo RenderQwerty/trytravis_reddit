@@ -1,11 +1,13 @@
  # Homework 18 - monitoring-1
- - [Dockerhub](https://hub.docker.com/r/jaels/)
+ #### Основное задание
+ - [Ссылка на Dockerhub](https://hub.docker.com/r/jaels/)
   ### Задания со *:
   #### Мониторинг mongodb через экспортер:
   - Нашёл в сети и форкнул к себе [проект с эскпортером](https://github.com/RenderQwerty/docker-mongodb-exporter)
     Настроил [автобилд в Docker Hub](https://hub.docker.com/r/jaels/docker-mongodb-exporter/) и подключил контейнер в docker/docker-compose.yml
   #### Blackbox мониторинг через cloudprober:
-  - Сделал [кастомный образ](https://hub.docker.com/r/jaels/cloudprober/) с [своим конфигом](https://github.com/RenderQwerty/cloudprober/blob/master/cloudprober.cfg). Хотелось бы большего, но документация на этот проект отсутсвует чуть менее, чем полностью.
+  - Сделал [кастомный образ](https://hub.docker.com/r/jaels/cloudprober/) с [своим конфигом](https://github.com/RenderQwerty/cloudprober/blob/master/cloudprober.cfg).
+  Хотелось бы большего, но документация на этот проект отсутсвует чуть менее, чем полностью.
 
  # Homework 17 - gitlab-ci-2
   ### Задание со * - в процессе, будет доработано позже
