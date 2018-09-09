@@ -39,3 +39,8 @@ run: run-all
 .PHONY: run
 run-all:
 	cd $(PWD)/docker/ && docker-compose up -d
+
+run: stop-all
+.PHONY: stop
+stop-all:
+	cd $(PWD)/docker/ && docker-compose stop
