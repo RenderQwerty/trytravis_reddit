@@ -34,3 +34,8 @@ push-post:
 	docker push $(USER_NAME)/post
 push-prometheus:
 	docker push $(USER_NAME)/prometheus
+
+run: run-all
+.PHONY: run
+run-all:
+	cd $(PWD)/docker/ && docker-compose up -d
