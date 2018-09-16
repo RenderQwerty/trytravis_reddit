@@ -22,6 +22,20 @@ services:
       - front_net
       - metrics_net
 
+  grafana:
+    image: grafana/grafana:5.0.0
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    networks:
+      - metrics_net
+
   cadvisor:
     image: google/cadvisor:v0.29.0
     volumes:
@@ -66,6 +80,7 @@ services:
       - back_net
 volumes:
   prometheus_data:
+  grafana_data:
 
 networks:
   front_net:
