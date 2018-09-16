@@ -33,7 +33,7 @@ push: push-ui push-comment push-post push-prometheus push-alertmanager
 push-ui:
 	docker push $(USER_NAME)/ui
 push-comment:
-	push $(USER_NAME)/comment
+	docker push $(USER_NAME)/comment
 push-post:
 	docker push $(USER_NAME)/post
 push-prometheus:
