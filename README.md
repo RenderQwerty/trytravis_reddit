@@ -1,3 +1,10 @@
+ # Homework 19 - monitoring-2
+  #### Основное задание
+  - Т.к. мы разделили сервисы приложения и сервисы мониторинга на разные compose файлы, то необходимо создать общие сети вручную и отметить их как 'external' в файлах docker-compose:
+    -   ```docker network create --subnet 10.0.2.0/24 backend && docker network create --subnet 10.0.1.0/24 frontend```
+
+
+
  # Homework 18 - monitoring-1
  #### Основное задание
  - [Ссылка на Dockerhub](https://hub.docker.com/r/jaels/)
