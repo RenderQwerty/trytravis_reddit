@@ -89,6 +89,14 @@ services:
       - metrics_net
       - front_net
       - back_net
+
+  telegraf:
+    image: telegraf:1.5
+    networks:
+      - metrics_net
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+
 volumes:
   prometheus_data:
   grafana_data:
