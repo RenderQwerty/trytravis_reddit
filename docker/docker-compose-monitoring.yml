@@ -14,6 +14,14 @@ services:
     networks:
       - front_net
       - metrics_net
+      - docker2prom
+    extra_hosts:
+      - "host:10.0.3.1"
+
+  sidecar:
+    image: jaels/docker-debug
+    networks:
+      - docker2prom
 
   grafana:
     image: grafana/grafana:5.0.0
@@ -91,4 +99,7 @@ networks:
   back_net:
     external:
       name: backend
+  docker2prom:
+    external:
+      name: hostnet
   metrics_net:

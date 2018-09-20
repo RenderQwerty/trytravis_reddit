@@ -2,7 +2,15 @@
   #### Основное задание
   - Т.к. мы разделили сервисы приложения и сервисы мониторинга на разные compose файлы, то необходимо создать общие сети вручную и отметить их как 'external' в файлах docker-compose:
     -   ```docker network create --subnet 10.0.2.0/24 backend && docker network create --subnet 10.0.1.0/24 frontend```
+  ### Задания со *:
+  #### В Makefile добавлены новые сервисы
+  #### Добавить сбор метрик, отдаваемых докер демоном в prometheus:
+   - Думал как лучше сделать, чтобы достучатся до хоста из контейнера с прометеем. Решил сделать ещё одну сеть, в которой явно задал адрес gateway:    
+      - ``` docker network create --subnet 10.0.3.0/30 --gateway 10.0.3.1 hostnet ```
+      
+        Эту сеть добавляем как external в docker-compose-monitoring.yml и подключаем к контейнеру с прометеем. Также необходимо добавить правило файрвола, которое разрешает подключение к хосту c интерфейса сети hostnet - ``` sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 4 -i br-14d3a37d8190 -j ACCEPT && sudo firewall-cmd --reload ```
 
+        В /etc/docker/daemon.json задаём адрес интерфейса в созданной сети, на котором будет доступен просмотр метрик - 10.0.3.1  (чтобы порт был доступен только для одной сети )
 
 
  # Homework 18 - monitoring-1
