@@ -50,3 +50,8 @@ stop: stop-all
 .PHONY: stop
 stop-all:
 	cd $(PWD)/docker/ && docker-compose stop && docker-compose -f docker-compose-monitoring.yml stop
+
+restart: restart-all
+.PHONY: restart
+restart-all:
+	cd $(PWD)/docker/ && docker-compose restart && docker-compose -f docker-compose-monitoring.yml restart
