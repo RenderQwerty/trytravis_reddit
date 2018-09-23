@@ -11,7 +11,8 @@
         Эту сеть добавляем как external в docker-compose-monitoring.yml и подключаем к контейнеру с прометеем. Также необходимо добавить правило файрвола, которое разрешает подключение к хосту c интерфейса сети hostnet - ``` sudo firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 4 -i br-14d3a37d8190 -j ACCEPT && sudo firewall-cmd --reload ```
 
         В /etc/docker/daemon.json задаём адрес интерфейса в созданной сети, на котором будет доступен просмотр метрик - 10.0.3.1  (чтобы порт был доступен только для одной сети )
-
+  #### Сбор метрик через telegraf
+   - Изначально поднял контейнер с telegraf и забирал метрики в прометей, но не нашёл нормальных дашбордов для графаны в такой связке. Потому добавил ещё контейнер с influxdb, в которую telegraf отправляет метрики. И в графане подключил influxdb как datasource. Дашборд положил в 'monitoring/grafana/dashboards/docker-metrics-per-container.json'
 
  # Homework 18 - monitoring-1
  #### Основное задание
