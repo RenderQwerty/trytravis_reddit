@@ -46,6 +46,10 @@ services:
       - 9093:9093
     networks:
       - metrics_net
+    environment:
+      - GMAIL_ACCOUNT=fisakov.root@gmail.com
+      - GMAIL_AUTH_TOKEN=secret
+
 
   cadvisor:
     image: google/cadvisor:v0.29.0
