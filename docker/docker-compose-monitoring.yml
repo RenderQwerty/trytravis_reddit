@@ -91,7 +91,7 @@ services:
       - back_net
 
   telegraf:
-    image: telegraf:1.5
+    image: jaels/telegraf
     networks:
       - metrics_net
     volumes:
