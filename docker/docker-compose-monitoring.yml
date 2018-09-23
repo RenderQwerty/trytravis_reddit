@@ -96,10 +96,30 @@ services:
       - metrics_net
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
+    depends_on:
+      - influxdb
+
+  influxdb:
+    image: influxdb
+    ports:
+      - '8086:8086'
+    volumes:
+      - 'influxdb_data:/var/lib/influxdb'
+    networks:
+      - metrics_net
+    environment:
+      - INFLUXDB_DB=telegraf
+      - INFLUXDB_ADMIN_USER=root
+      - INFLUXDB_ADMIN_PASSWORD=secret
+      - INFLUXDB_USER=telegraf
+      - INFLUXDB_USER_PASSWORD=secret
+      - INFLUXDB_WRITE_USER=telegraf
+      - INFLUXDB_WRITE_USER_PASSWORD=secret
 
 volumes:
   prometheus_data:
   grafana_data:
+  influxdb_data:
 
 networks:
   front_net:
